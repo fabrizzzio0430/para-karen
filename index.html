@@ -122,26 +122,6 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(108, 92, 231, 0.5);
         }
-        /* Botón de música superior */
-        .audio-control {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255, 215, 0, 0.2);
-            border: 1px solid #ffd700;
-            color: #ffd700;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            cursor: pointer;
-            z-index: 10;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        .audio-control:hover {
-            background: #ffd700;
-            color: #0f0c20;
-        }
     </style>
 </head>
 <body>
@@ -160,13 +140,6 @@
     <div class="sparkle" style="top:75%; left:22%; width:5px; height:5px; animation-delay: 1.2s;"></div>
     <div class="sparkle" style="top:80%; right:12%; width:7px; height:7px; animation-delay: 0.4s;"></div>
     <div class="sparkle" style="top:10%; right:30%; width:5px; height:5px; animation-delay: 1.8s;"></div>
-
-    <!-- Reproductor de Audio con tema musical de Harry Potter -->
-    <audio id="hp-music" loop>
-        <source src="https://soundboard.com" type="audio/mp3">
-    </audio>
-
-    <button id="music-btn" class="audio-control" onclick="toggleMusic()">🔊 Activar música mágica</button>
 
     <div class="card animate__animated animate__fadeIn">
         <!-- Paso 1 -->
@@ -205,33 +178,13 @@
         <div id="step-5" style="display: none;">
             <div class="emoji-container">🎂🦁🪄</div>
             <h1>¡Feliz Cumpleaños!</h1>
-            <p>Te amo muchísimo, prima. Que tu día esté lleno de magia, risas y de la felicidad que tanto te mereces. <br><br><i>"¡Travesura realizada!"</i> 🐾</p>
+            <p>Te amo muchísimo, prima. Que tu día esté lleno de magia, risas y de la felicidad que tanto te mereces. <br><br><i>"¡Travesura realizada! o alguien podria leerlo...."</i> 🐾</p>
             <button class="btn" onclick="reiniciar()">Ver de nuevo 💖</button>
         </div>
     </div>
 
     <script>
-        const music = document.getElementById('hp-music');
-        const musicBtn = document.getElementById('music-btn');
-
-        function toggleMusic() {
-            if (music.paused) {
-                music.play();
-                musicBtn.innerText = "⏸ Pausar música";
-            } else {
-                music.pause();
-                musicBtn.innerText = "🔊 Activar música mágica";
-            }
-        }
-
         function nextStep(step) {
-            // Intentar reproducir música automáticamente si el usuario interactúa con la tarjeta
-            if (music.paused && step === 2) {
-                music.play().then(() => {
-                    musicBtn.innerText = "⏸ Pausar música";
-                }).catch(() => {});
-            }
-
             document.getElementById('step-1').style.display = 'none';
             document.getElementById('step-2').style.display = 'none';
             document.getElementById('step-3').style.display = 'none';
@@ -244,3 +197,8 @@
         }
 
         function reiniciar() {
+            nextStep(1);
+        }
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para mi prima Karen ✨</title>
+    <title>El Mapa del Merodeador para Karen 🐾</title>
     <link href="https://googleapis.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cloudflare.com"/>
     <style>
@@ -121,34 +121,6 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(108, 92, 231, 0.5);
         }
-
-        /* Estilos exclusivos para el Candado Mágico */
-        .spell-input {
-            width: 100%;
-            padding: 12px 20px;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            border: 1px solid rgba(255, 215, 0, 0.4);
-            background: rgba(0, 0, 0, 0.4);
-            color: #ffd700;
-            text-align: center;
-            margin-bottom: 20px;
-            outline: none;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s;
-        }
-        .spell-input:focus {
-            border-color: #ffd700;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-        }
-        .error-message {
-            color: #ff7675;
-            font-size: 0.9rem;
-            margin-top: -10px;
-            margin-bottom: 15px;
-            display: none;
-            font-weight: 400;
-        }
     </style>
 </head>
 <body>
@@ -170,30 +142,28 @@
 
     <div class="card animate__animated animate__fadeIn">
         
-        <!-- PANTALLA DE BLOQUEO (NUEVA) -->
-        <div id="spell-lock">
-            <div class="emoji-container">🔒📜</div>
-            <h1>Encantamiento de Bloqueo</h1>
-            <p>Esta carta está protegida por un hechizo de alta magia. Solo un verdadero mago o bruja puede abrirla. <br><br> <span class="gold-text">Pista:</span> El encantamiento para abrir puertas de Hogwarts.</p>
-            <input type="text" id="spell-field" class="spell-input" placeholder="Escribe el hechizo aquí..." autocomplete="off">
-            <div id="error-txt" class="error-message">⚠️ Ese hechizo no tiene efecto aquí. ¡Intenta de nuevo!</div>
-            <button class="btn" onclick="checkSpell()">Lanzar Hechizo ✨</button>
+        <!-- ENTRADA: BIENVENIDA AL MAPA -->
+        <div id="step-0">
+            <div class="emoji-container">📜🐾</div>
+            <h1>El Mapa del Merodeador</h1>
+            <p>Los señores <span class="gold-text">Lunático, Colagusano, Canuto y Cornamenta</span> te dan la bienvenida a este pergamino mágico diseñado especialmente para ti...</p>
+            <button class="btn" onclick="nextStep(1)">Juro solemnemente que mis intenciones no son buenas ✨</button>
         </div>
 
-        <!-- Paso 1 (Oculto al inicio hasta poner el hechizo) -->
+        <!-- Paso 1 -->
         <div id="step-1" style="display: none;">
             <div class="emoji-container">⚡🧙‍♀️</div>
             <h1>¡Hola, Karen!</h1>
             <p>Dicen que la vida nos hizo <span class="gold-text">primos</span> porque ninguna de nuestras mamás hubiera aguantado tenernos como hermanos bajo el mismo techo... ¡Nos habrían mandado a Azkaban de inmediato! 😂</p>
-            <button class="btn" onclick="nextStep(2)">Revelar secreto ✨</button>
+            <button class="btn" onclick="nextStep(2)">Revelar secreto 📜</button>
         </div>
 
         <!-- Paso 2 -->
         <div id="step-2" style="display: none;">
             <div class="emoji-container">🍿🎬</div>
-            <h1>El mapa del merodeador...</h1>
+            <h1>Abriendo el mapa...</h1>
             <p>Contigo las risas nunca faltan, los chismes de calidad menos, y las locuras están garantizadas en cada capítulo. Pero hoy quería ponerme un poquito serio de verdad...</p>
-            <button class="btn" onclick="nextStep(3)">Sigue leyendo ✨</button>
+            <button class="btn" onclick="nextStep(3)">Sigue leyendo 🐾</button>
         </div>
 
         <!-- Paso 3 -->
@@ -216,22 +186,34 @@
         <div id="step-5" style="display: none;">
             <div class="emoji-container">🎂🦁🪄</div>
             <h1>¡Feliz Cumpleaños!</h1>
-            <p>Te amo muchísimo, prima. Que tu día esté lleno de magia, risas y de la felicidad que tanto te mereces. <br><br><i>"¡Travesura realizada!"</i> 🐾</p>
-            <button class="btn" onclick="reiniciar()">Ver de nuevo 💖</button>
+            <p>Te amo muchísimo, Hermanita. Que tu día esté lleno de magia, risas y de la felicidad que tanto te mereces. <br><br><i>"¡Travesura realizada! o alguien podria leerlo..."</i> 🐾</p>
+            <button class="btn" onclick="reiniciar()">Cerrar Mapa 🔒</button>
         </div>
     </div>
 
     <script>
-        function checkSpell() {
-            const inputField = document.getElementById('spell-field');
-            const errorTxt = document.getElementById('error-txt');
-            // Limpiamos espacios y pasamos a minúsculas para que no falle por mayúsculas
-            const userInput = inputField.value.trim().toLowerCase();
+        function nextStep(step) {
+            document.getElementById('step-0').style.display = 'none';
+            document.getElementById('step-1').style.display = 'none';
+            document.getElementById('step-2').style.display = 'none';
+            document.getElementById('step-3').style.display = 'none';
+            document.getElementById('step-4').style.display = 'none';
+            document.getElementById('step-5').style.display = 'none';
+            
+            const currentStep = document.getElementById('step-' + step);
+            currentStep.style.display = 'block';
+            
+            // Si abre el mapa por primera vez le damos una animación especial de aparición
+            if(step === 1) {
+                currentStep.classList.add('animate__animated', 'animate__zoomIn');
+            } else {
+                currentStep.classList.add('animate__animated', 'animate__fadeInRight');
+            }
+        }
 
-            if (userInput === 'alohomora') {
-                errorTxt.style.display = 'none';
-                document.getElementById('spell-lock').style.display = 'none';
-                
-                // Mostramos el paso 1 con animación de apertura mágica
-                const step1 = document.getElementById('step-1');
-                step1.style.display = 'block';
+        function reiniciar() {
+            nextStep(0);
+        }
+    </script>
+</body>
+</html>

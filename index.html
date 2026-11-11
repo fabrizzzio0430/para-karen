@@ -14,49 +14,74 @@
         }
         body {
             font-family: 'Poppins', sans-serif;
-            /* Fondo mágico estilo noche de Hogwarts */
             background: linear-gradient(135deg, #0f0c20 0%, #15102a 50%, #06040a 100%);
             color: #f5f6fa;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow: hidden;
             padding: 20px;
+            position: relative;
         }
-        /* Estrellas de fondo sutiles */
-        body::before {
-            content: "";
+        /* Emojis fijos mágicos esparcidos en el fondo exterior */
+        .bg-emoji {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(white 1px, transparent 0);
-            background-size: 40px 40px;
-            opacity: 0.15;
-            top: 0;
-            left: 0;
+            font-size: 2.5rem;
+            opacity: 0.25;
+            user-select: none;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatSlow 4s ease-in-out infinite alternate;
+        }
+        /* Posiciones de los emojis en las esquinas/lados exteriores */
+        .e1 { top: 10%; left: 8%; animation-delay: 0s; }
+        .e2 { top: 15%; right: 10%; animation-delay: 0.5s; }
+        .e3 { bottom: 15%; left: 7%; animation-delay: 1s; }
+        .e4 { bottom: 12%; right: 9%; animation-delay: 1.5s; }
+        .e5 { top: 50%; left: 4%; animation-delay: 2s; }
+        .e6 { top: 48%; right: 5%; animation-delay: 2.5s; }
+
+        @keyframes floatSlow {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-15px) rotate(10deg); }
+        }
+
+        /* Destellos mágicos brillantes */
+        .sparkle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            box-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700;
+            animation: flash 2s infinite ease-in-out;
             z-index: 0;
         }
+        @keyframes flash {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+        }
+
         .card {
-            background: rgba(25, 20, 45, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: rgba(25, 20, 45, 0.75);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
             padding: 45px 35px;
             border-radius: 24px;
-            border: 1px solid rgba(255, 215, 0, 0.15);
+            border: 1px solid rgba(255, 215, 0, 0.3);
             text-align: center;
             max-width: 480px;
             width: 100%;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 20px rgba(108, 92, 231, 0.1);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.6), inset 0 0 25px rgba(255, 215, 0, 0.05);
             position: relative;
             z-index: 1;
         }
         h1 {
             font-family: 'Cinzel', serif;
             font-size: 2.1rem;
-            color: #ffd700; /* Dorado mágico */
+            color: #ffd700;
             margin-bottom: 25px;
-            text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.3);
+            text-shadow: 0px 0px 12px rgba(255, 215, 0, 0.4);
         }
         p {
             font-size: 1.1rem;
@@ -76,7 +101,7 @@
         .emoji-container {
             font-size: 3.5rem;
             margin-bottom: 15px;
-            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+            filter: drop-shadow(0 0 10px rgba(255,215,0,0.4));
         }
         .btn {
             background: linear-gradient(135deg, #6c5ce7 0%, #4834d4 100%);
@@ -96,11 +121,52 @@
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(108, 92, 231, 0.5);
-            background: linear-gradient(135deg, #786fa6 0%, #574b90 100%);
+        }
+        /* Botón de música superior */
+        .audio-control {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            z-index: 10;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .audio-control:hover {
+            background: #ffd700;
+            color: #0f0c20;
         }
     </style>
 </head>
 <body>
+
+    <!-- Elementos del Universo de Harry Potter flotando en el fondo exterior -->
+    <div class="bg-emoji e1">⚡</div>
+    <div class="bg-emoji e2">🏰</div>
+    <div class="bg-emoji e3">🪄</div>
+    <div class="bg-emoji e4">🦉</div>
+    <div class="bg-emoji e5">🧹</div>
+    <div class="bg-emoji e6">🦁</div>
+
+    <!-- Destellos mágicos fijos esparcidos -->
+    <div class="sparkle" style="top:20%; left:15%; width:6px; height:6px; animation-delay: 0.2s;"></div>
+    <div class="sparkle" style="top:40%; right:18%; width:8px; height:8px; animation-delay: 0.7s;"></div>
+    <div class="sparkle" style="top:75%; left:22%; width:5px; height:5px; animation-delay: 1.2s;"></div>
+    <div class="sparkle" style="top:80%; right:12%; width:7px; height:7px; animation-delay: 0.4s;"></div>
+    <div class="sparkle" style="top:10%; right:30%; width:5px; height:5px; animation-delay: 1.8s;"></div>
+
+    <!-- Reproductor de Audio con tema musical de Harry Potter -->
+    <audio id="hp-music" loop>
+        <source src="https://soundboard.com" type="audio/mp3">
+    </audio>
+
+    <button id="music-btn" class="audio-control" onclick="toggleMusic()">🔊 Activar música mágica</button>
 
     <div class="card animate__animated animate__fadeIn">
         <!-- Paso 1 -->
@@ -123,7 +189,7 @@
         <div id="step-3" style="display: none;">
             <div class="emoji-container">🤝❤️</div>
             <h1>Mi prima, mi hermana</h1>
-            <p>No hace falta compartir la misma casa para saber que eres <span class="highlight">la hermana que la vida me regaló</span>. Como tu primo, siempre ha sido un orgullo caminar a tu lado y ver en la mujer tan increíble en la que te has convertido.</p>
+            <p>No hace falta compartir la misma casa para saber que eres <span class="highlight">la hermana que la vida me regaló</span>. Como tu primo, siempre ha sido un orgullo caminar a tu lado y ver la mujer tan increíble en la que te has convertido.</p>
             <button class="btn" onclick="nextStep(4)">Tu mejor magia 💫</button>
         </div>
 
@@ -139,13 +205,33 @@
         <div id="step-5" style="display: none;">
             <div class="emoji-container">🎂🦁🪄</div>
             <h1>¡Feliz Cumpleaños!</h1>
-            <p>Te amo muchísimo, hermanita. Que tu día esté lleno de magia, risas y de la felicidad que tanto te mereces. <br><br><i>"¡Travesura realizada! o alguien podria leerlo...."</i> 🐾</p>
+            <p>Te amo muchísimo, prima. Que tu día esté lleno de magia, risas y de la felicidad que tanto te mereces. <br><br><i>"¡Travesura realizada!"</i> 🐾</p>
             <button class="btn" onclick="reiniciar()">Ver de nuevo 💖</button>
         </div>
     </div>
 
     <script>
+        const music = document.getElementById('hp-music');
+        const musicBtn = document.getElementById('music-btn');
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                musicBtn.innerText = "⏸ Pausar música";
+            } else {
+                music.pause();
+                musicBtn.innerText = "🔊 Activar música mágica";
+            }
+        }
+
         function nextStep(step) {
+            // Intentar reproducir música automáticamente si el usuario interactúa con la tarjeta
+            if (music.paused && step === 2) {
+                music.play().then(() => {
+                    musicBtn.innerText = "⏸ Pausar música";
+                }).catch(() => {});
+            }
+
             document.getElementById('step-1').style.display = 'none';
             document.getElementById('step-2').style.display = 'none';
             document.getElementById('step-3').style.display = 'none';
@@ -158,8 +244,3 @@
         }
 
         function reiniciar() {
-            nextStep(1);
-        }
-    </script>
-</body>
-</html>

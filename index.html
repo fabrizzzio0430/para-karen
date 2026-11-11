@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños Karen!</title>
+    <!-- Cargamos Google Fonts para una tipografía bonita -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <!-- Biblioteca de animaciones CSS -->
+    <link rel="stylesheet" href="https://cloudflare.com"/>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 450px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 2.2rem;
+            color: #6c5ce7;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #555;
+        }
+        .highlight {
+            font-weight: 600;
+            color: #ff7675;
+        }
+        .emoji-container {
+            font-size: 3.5rem;
+            margin: 20px 0;
+            animation: bounce 2s infinite;
+        }
+        .btn {
+            background: #6c5ce7;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+        }
+        .btn:hover {
+            background: #5b4cc4;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card animate__animated animate__fadeInUp">
+        <!-- Paso 1 -->
+        <div id="step-1">
+            <div class="emoji-container">🤷‍♀️👯‍♀️</div>
+            <h1>¡Hola, Karen!</h1>
+            <p>Dicen que la vida nos hizo primas porque ninguna de nuestras mamás hubiera aguantado tenernos como hermanas bajo el mismo techo... 😂</p>
+            <button class="btn" onclick="nextStep(2)">¿Y sabes qué?</button>
+        </div>
+
+        <!-- Paso 2 (Oculto al inicio) -->
+        <div id="step-2" style="display: none;">
+            <div class="emoji-container">🍿🤫</div>
+            <h1>Es la verdad...</h1>
+            <p>Contigo las risas nunca faltan, los chismes menos, y las locuras están garantizadas. Pero hoy quería ponerme un poquito seria...</p>
+            <button class="btn" onclick="nextStep(3)">Sigue leyendo ✨</button>
+        </div>
+
+        <!-- Paso 3 (Oculto al inicio) -->
+        <div id="step-3" style="display: none;">
+            <div class="emoji-container">❤️👭</div>
+            <h1>Mi prima, mi hermana</h1>
+            <p>No hace falta compartir el mismo apellido de corrido ni la misma casa para saber que eres <span class="highlight">la hermana que la vida me regaló</span>. Gracias por estar siempre.</p>
+            <button class="btn" onclick="nextStep(4)">Por último... 🎁</button>
+        </div>
+
+        <!-- Paso 4 (Oculto al inicio) -->
+        <div id="step-4" style="display: none;">
+            <div class="emoji-container">🎂🎉✨</div>
+            <h1>¡Feliz Cumpleaños!</h1>
+            <p>Te amo muchísimo, prima. Que hoy y siempre seas la más feliz del universo. ¡A celebrar en grande!</p>
+            <button class="btn" onclick="reiniciar()">Ver de nuevo 💖</button>
+        </div>
+    </div>
+
+    <script>
+        function nextStep(step) {
+            // Ocultamos todos los pasos
+            document.getElementById('step-1').style.display = 'none';
+            document.getElementById('step-2').style.display = 'none';
+            document.getElementById('step-3').style.display = 'none';
+            document.getElementById('step-4').style.display = 'none';
+            
+            // Mostramos el paso actual con una animación bonita
+            const currentStep = document.getElementById('step-' + step);
+            currentStep.style.display = 'block';
+            currentStep.classList.add('animate__animated', 'animate__fadeInRight');
+        }
+
+        function reiniciar() {
+            nextStep(1);
+        }
+    </script>
+</body>
+</html>

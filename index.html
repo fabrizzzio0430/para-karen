@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¡Feliz Cumpleaños Karen!</title>
-    <!-- Cargamos Google Fonts para una tipografía bonita -->
+    <title>Para mi prima Karen ✨</title>
     <link href="https://googleapis.com" rel="stylesheet">
-    <!-- Biblioteca de animaciones CSS -->
     <link rel="stylesheet" href="https://cloudflare.com"/>
     <style>
         * {
@@ -16,8 +14,9 @@
         }
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: #333;
+            /* Fondo mágico estilo noche de Hogwarts */
+            background: linear-gradient(135deg, #0f0c20 0%, #15102a 50%, #06040a 100%);
+            color: #f5f6fa;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,99 +24,134 @@
             overflow-x: hidden;
             padding: 20px;
         }
-        .card {
-            background: white;
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 450px;
+        /* Estrellas de fondo sutiles */
+        body::before {
+            content: "";
+            position: absolute;
             width: 100%;
+            height: 100%;
+            background-image: radial-gradient(white 1px, transparent 0);
+            background-size: 40px 40px;
+            opacity: 0.15;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        .card {
+            background: rgba(25, 20, 45, 0.65);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 45px 35px;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 215, 0, 0.15);
+            text-align: center;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 20px rgba(108, 92, 231, 0.1);
+            position: relative;
+            z-index: 1;
         }
         h1 {
-            font-size: 2.2rem;
-            color: #6c5ce7;
-            margin-bottom: 20px;
-            font-weight: 800;
+            font-family: 'Cinzel', serif;
+            font-size: 2.1rem;
+            color: #ffd700; /* Dorado mágico */
+            margin-bottom: 25px;
+            text-shadow: 0px 0px 10px rgba(255, 215, 0, 0.3);
         }
         p {
             font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 25px;
-            color: #555;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            color: #dcdde1;
+            font-weight: 300;
         }
         .highlight {
             font-weight: 600;
             color: #ff7675;
         }
+        .gold-text {
+            color: #ffd700;
+            font-weight: 600;
+        }
         .emoji-container {
             font-size: 3.5rem;
-            margin: 20px 0;
-            animation: bounce 2s infinite;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
         }
         .btn {
-            background: #6c5ce7;
+            background: linear-gradient(135deg, #6c5ce7 0%, #4834d4 100%);
             color: white;
             border: none;
-            padding: 12px 30px;
-            font-size: 1rem;
+            padding: 14px 35px;
+            font-size: 0.95rem;
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             border-radius: 50px;
             cursor: pointer;
-            transition: transform 0.2s, background 0.2s;
-            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(108, 92, 231, 0.3);
+            border: 1px solid rgba(255,255,255,0.1);
         }
         .btn:hover {
-            background: #5b4cc4;
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.5);
+            background: linear-gradient(135deg, #786fa6 0%, #574b90 100%);
         }
     </style>
 </head>
 <body>
 
-    <div class="card animate__animated animate__fadeInUp">
+    <div class="card animate__animated animate__fadeIn">
         <!-- Paso 1 -->
         <div id="step-1">
-            <div class="emoji-container">🤷‍♀️👯‍♀️</div>
+            <div class="emoji-container">⚡🧙‍♀️</div>
             <h1>¡Hola, Karen!</h1>
-            <p>Dicen que la vida nos hizo primas porque ninguna de nuestras mamás hubiera aguantado tenernos como hermanas bajo el mismo techo... 😂</p>
-            <button class="btn" onclick="nextStep(2)">¿Y sabes qué?</button>
+            <p>Dicen que la vida nos hizo <span class="gold-text">primos</span> porque ninguna de nuestras mamás hubiera aguantado tenernos como hermanos bajo el mismo techo... ¡Nos habrían mandado a Azkaban de inmediato! 😂</p>
+            <button class="btn" onclick="nextStep(2)">Revelar hechizo ✨</button>
         </div>
 
-        <!-- Paso 2 (Oculto al inicio) -->
+        <!-- Paso 2 -->
         <div id="step-2" style="display: none;">
-            <div class="emoji-container">🍿🤫</div>
-            <h1>Es la verdad...</h1>
-            <p>Contigo las risas nunca faltan, los chismes menos, y las locuras están garantizadas. Pero hoy quería ponerme un poquito seria...</p>
+            <div class="emoji-container">🍿🎬</div>
+            <h1>El mapa del merodeador...</h1>
+            <p>Contigo las risas nunca faltan, los chismes de calidad menos, y las locuras están garantizadas en cada capítulo. Pero hoy quería ponerme un poquito serio de verdad...</p>
             <button class="btn" onclick="nextStep(3)">Sigue leyendo ✨</button>
         </div>
 
-        <!-- Paso 3 (Oculto al inicio) -->
+        <!-- Paso 3 -->
         <div id="step-3" style="display: none;">
-            <div class="emoji-container">❤️👭</div>
+            <div class="emoji-container">🤝❤️</div>
             <h1>Mi prima, mi hermana</h1>
-            <p>No hace falta compartir el mismo apellido de corrido ni la misma casa para saber que eres <span class="highlight">la hermana que la vida me regaló</span>. Gracias por estar siempre.</p>
-            <button class="btn" onclick="nextStep(4)">Por último... 🎁</button>
+            <p>No hace falta compartir la misma casa para saber que eres <span class="highlight">la hermana que la vida me regaló</span>. Como tu primo, siempre ha sido un orgullo caminar a tu lado y ver en la mujer tan increíble en la que te has convertido.</p>
+            <button class="btn" onclick="nextStep(4)">Tu mejor magia 💫</button>
         </div>
 
-        <!-- Paso 4 (Oculto al inicio) -->
+        <!-- Paso 4 -->
         <div id="step-4" style="display: none;">
-            <div class="emoji-container">🎂🎉✨</div>
+            <div class="emoji-container">👩‍👧✨</div>
+            <h1>Tu Patronus más real</h1>
+            <p>Si hay algo que admiro profundamente de ti, es ver el amor tan infinito con el que cuidas y guías a <span class="gold-text">tu hermosa hija</span>. Ella es, sin duda, tu magia más pura y tu mayor orgullo de vida.</p>
+            <button class="btn" onclick="nextStep(5)">Por último... 🎁</button>
+        </div>
+
+        <!-- Paso 5 -->
+        <div id="step-5" style="display: none;">
+            <div class="emoji-container">🎂🦁🪄</div>
             <h1>¡Feliz Cumpleaños!</h1>
-            <p>Te amo muchísimo, prima. Que hoy y siempre seas la más feliz del universo. ¡A celebrar en grande!</p>
+            <p>Te amo muchísimo, prima. Que tu día esté lleno de magia, risas y de la felicidad que tanto te mereces. <br><br><i>"¡Travesura realizada!"</i> 🐾</p>
             <button class="btn" onclick="reiniciar()">Ver de nuevo 💖</button>
         </div>
     </div>
 
     <script>
         function nextStep(step) {
-            // Ocultamos todos los pasos
             document.getElementById('step-1').style.display = 'none';
             document.getElementById('step-2').style.display = 'none';
             document.getElementById('step-3').style.display = 'none';
             document.getElementById('step-4').style.display = 'none';
+            document.getElementById('step-5').style.display = 'none';
             
-            // Mostramos el paso actual con una animación bonita
             const currentStep = document.getElementById('step-' + step);
             currentStep.style.display = 'block';
             currentStep.classList.add('animate__animated', 'animate__fadeInRight');

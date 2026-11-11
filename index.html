@@ -34,7 +34,6 @@
             z-index: 0;
             animation: floatSlow 4s ease-in-out infinite alternate;
         }
-        /* Posiciones de los emojis en las esquinas/lados exteriores */
         .e1 { top: 10%; left: 8%; animation-delay: 0s; }
         .e2 { top: 15%; right: 10%; animation-delay: 0.5s; }
         .e3 { bottom: 15%; left: 7%; animation-delay: 1s; }
@@ -122,6 +121,34 @@
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(108, 92, 231, 0.5);
         }
+
+        /* Estilos exclusivos para el Candado Mágico */
+        .spell-input {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            background: rgba(0, 0, 0, 0.4);
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 20px;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+        }
+        .spell-input:focus {
+            border-color: #ffd700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+        .error-message {
+            color: #ff7675;
+            font-size: 0.9rem;
+            margin-top: -10px;
+            margin-bottom: 15px;
+            display: none;
+            font-weight: 400;
+        }
     </style>
 </head>
 <body>
@@ -142,12 +169,23 @@
     <div class="sparkle" style="top:10%; right:30%; width:5px; height:5px; animation-delay: 1.8s;"></div>
 
     <div class="card animate__animated animate__fadeIn">
-        <!-- Paso 1 -->
-        <div id="step-1">
+        
+        <!-- PANTALLA DE BLOQUEO (NUEVA) -->
+        <div id="spell-lock">
+            <div class="emoji-container">🔒📜</div>
+            <h1>Encantamiento de Bloqueo</h1>
+            <p>Esta carta está protegida por un hechizo de alta magia. Solo un verdadero mago o bruja puede abrirla. <br><br> <span class="gold-text">Pista:</span> El encantamiento para abrir puertas de Hogwarts.</p>
+            <input type="text" id="spell-field" class="spell-input" placeholder="Escribe el hechizo aquí..." autocomplete="off">
+            <div id="error-txt" class="error-message">⚠️ Ese hechizo no tiene efecto aquí. ¡Intenta de nuevo!</div>
+            <button class="btn" onclick="checkSpell()">Lanzar Hechizo ✨</button>
+        </div>
+
+        <!-- Paso 1 (Oculto al inicio hasta poner el hechizo) -->
+        <div id="step-1" style="display: none;">
             <div class="emoji-container">⚡🧙‍♀️</div>
             <h1>¡Hola, Karen!</h1>
             <p>Dicen que la vida nos hizo <span class="gold-text">primos</span> porque ninguna de nuestras mamás hubiera aguantado tenernos como hermanos bajo el mismo techo... ¡Nos habrían mandado a Azkaban de inmediato! 😂</p>
-            <button class="btn" onclick="nextStep(2)">Revelar hechizo ✨</button>
+            <button class="btn" onclick="nextStep(2)">Revelar secreto ✨</button>
         </div>
 
         <!-- Paso 2 -->
@@ -178,27 +216,22 @@
         <div id="step-5" style="display: none;">
             <div class="emoji-container">🎂🦁🪄</div>
             <h1>¡Feliz Cumpleaños!</h1>
-            <p>Te amo muchísimo, hermnanita, Que tu día esté lleno de magia, risas y de la felicidad que tanto te mereces. <br><br><i>"¡Travesura realizada! o alguien podria leerlo...."</i> 🐾</p>
+            <p>Te amo muchísimo, prima. Que tu día esté lleno de magia, risas y de la felicidad que tanto te mereces. <br><br><i>"¡Travesura realizada!"</i> 🐾</p>
             <button class="btn" onclick="reiniciar()">Ver de nuevo 💖</button>
         </div>
     </div>
 
     <script>
-        function nextStep(step) {
-            document.getElementById('step-1').style.display = 'none';
-            document.getElementById('step-2').style.display = 'none';
-            document.getElementById('step-3').style.display = 'none';
-            document.getElementById('step-4').style.display = 'none';
-            document.getElementById('step-5').style.display = 'none';
-            
-            const currentStep = document.getElementById('step-' + step);
-            currentStep.style.display = 'block';
-            currentStep.classList.add('animate__animated', 'animate__fadeInRight');
-        }
+        function checkSpell() {
+            const inputField = document.getElementById('spell-field');
+            const errorTxt = document.getElementById('error-txt');
+            // Limpiamos espacios y pasamos a minúsculas para que no falle por mayúsculas
+            const userInput = inputField.value.trim().toLowerCase();
 
-        function reiniciar() {
-            nextStep(1);
-        }
-    </script>
-</body>
-</html>
+            if (userInput === 'alohomora') {
+                errorTxt.style.display = 'none';
+                document.getElementById('spell-lock').style.display = 'none';
+                
+                // Mostramos el paso 1 con animación de apertura mágica
+                const step1 = document.getElementById('step-1');
+                step1.style.display = 'block';
